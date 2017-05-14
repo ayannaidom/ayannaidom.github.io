@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>AYANNA IDOM - CSC 175 - JAVASCRIPT DEVELOPMENT: FINAL PROJECT</title>
+    <meta name="url" content="https://ayannaidom.github.io/csc175-finalproject/product-details.html">
+<!--     <meta name="description" content="Build an interactive product shopping site for the Parkland Bookstore. The site will consist of a page that allows users to scroll through a list of products and then click to view the details of a specific product. Pages utilize sample json data files since a valid API key was not available."> -->
+
+    <script src="https://code.jquery.com/jquery-2.1.4.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+   <!-- ADDED jquery.validate.min.js for validation of email form -->
+    <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+    <!-- ADDED FOR SOCIAL MEDIA -->
+    <script src="dist/jssocials.min.js"></script>
+    <script src="dist/jssocials.js"></script>
+    <script src="src/jssocials.shares.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- ADDED FOR SOCIAL MEDIA -->
+    <link rel="stylesheet" href="dist/jssocials.css">
+    <link rel="stylesheet" href="dist/jssocials-theme-flat.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- ADDED FOR EMAIL FORM VALIDATION -->
+    <script>
+        var form = $("#email_form");
+        form.validate();
+        //apply social media elements on page
+        $("#share").jsSocials({ shares: ["twitter", "facebook"],
+                                url: "https://ayannaidom.github.io/csc175-finalproject/product-details.html",
+                                text: "CSC 175 - JAVASCRIPT DEVELOPMENT: FINAL PROJECT - AYANNA IDOM",
+                                shareIn: "popup",
+                                on: {
+                                    click: function(e) {
+                                        if(this.share === "twitter") {
+                                            console.log("tweet \"" + this.url + "\" at " + e.timeStamp);
+                                        }
+                                    }
+                                }
+        });
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- ADDED PARKLAND URL AND TITLE AND STYLE-->
+                <a class="navbar-brand" href="#" style="background-color: #006400; color: yellow; font-weight: bold;">Parkland Bookstore</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html" style="background-color: #006400; color: yellow; font-weight: bold;" title="Home Page">Home <span class="sr-only"></span></a></li>
+                    <li><a href="http://www.parklandbookstore.com/" style="background-color: #006400; color: yellow; font-weight: bold;" title="Parkland Bookstore" target="_blank">The Bookstore</a></li> 
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+            <!-- ADDED TITLE AND STYLE AND SPACE-->                    
+            <h1 style="background-color: #00386F; color: yellow; font-weight: bold; text-align: center;">BEST BUY PRODUCT DETAILS</h1>  
+                <div class="thumbnail" id="product-details">
+                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right">$24.99</h4>
+                        <h4 class="pull-left"><a href="#">{Product Name}</a></h4>
+                    </div>
+                    <div class="ratings" id="ratings">
+                        <p class="pull-right">3 comments</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span> 4.0 stars
+                        </p>
+                    </div>
+                </div>
+                <!-- ADDED SOCIAL MEDIA INTERACTIVITY OPTIONS-->        
+                <div id="share">
+                    <script>
+                        $("#share").jsSocials({
+                            shares: ["twitter", "facebook"]
+                            // shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+                        });
+                    </script>
+                </div>
+                <br>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div id="leave-a-comment" class="col-md-12">
+                <!--ADDED ONSUBMIT ALERT FOR COMMENT POSTING ETA-->
+                <form class="email_form" action="https://formspree.io/ayannai@yahoo.com" onsubmit='alert("Please allow 48 hours for your comment to be reviewed before being posted to this site.");' method="POST">
+                    <h2>Leave a Comment</h2>
+                    <div class="form-group">
+                        <label for="product-id">Product ID</label>
+                        <input type="text" class="form-control" id="product" name="product-id" value="">
+                    </div>    
+                    
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select type="text" class="form-control" id="rating" name="rating" range: [1,5] pattern="\d{1}" title="Must be a numerical rating 1 - 5" required>
+                            <option value="" selected disabled>Select rating</option> <!--FORCE USER TO SELECT RATING-->
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>      
+                    <!--ADDED CUSTOM SUBJECT LINE AND CC EMAIL ADDRESSES FOR FORMSPREE.IO EMAILS--> 
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="_subject" value="CSC 175 Final Project - Ayanna Idom Comment Form">
+                        <input type="hidden" class="form-control" name="_cc" value="csc175-final@mailinator.com,aidom1@stu.parkland.edu"> 
+                    </div>   
+                    <!--ADDED REQUIRED FOR FORM VALIDATION-->                         
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <input type="text" class="form-control" id="comment" name="comment" required>
+                    </div>
+                    <button type="submit" class="btn btn-default" id="button" style="background-color: #00386F; color: yellow; font-weight: bold;">Submit Form</button>
+                    
+                    
+                </form>
+                
+            </div>            
+        </div>
+    </div>
+
+<!-- JS -->
+<!-- this is the jQuery CDN reference. You need internet access for this file! -->
+<script src="https://code.jquery.com/jquery-2.1.4.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<!-- custom code for web page -->
+<script src="js/product-details.js" type="text/javascript"></script>
+<script src="js/products-list.js" type="text/javascript"></script>
+
+
+</body>
+
+</html>
